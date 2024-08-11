@@ -1,0 +1,72 @@
+---
+title: "FixTheGraph#2"
+author: "Max Wang"
+date: "2024-03-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+#answer question which group made up the largest percentage of visitors to monticello last month
+#monticello visitors by type - title
+#school groups - orange
+#tourists- dark blue
+# locals - light blue, uva secondary color
+
+rm(list = ls())
+
+cd /Users/maxwang/Desktop/
+
+ls -l thomasjeffersonimg.jpeg
+
+
+
+```{r}
+# Load necessary libraries
+
+# Load necessary library
+library(plotly)
+
+# Create a dataframe with visitor types and percentage values
+monticello_visitors <- data.frame(
+  type_of_visitor = c("School Groups", "Tourists", "Locals"),
+  values = c(48, 40, 12) / sum(c(48, 40, 12)) * 100
+)
+
+#define each visitor category and the color correspondence
+visitor_colors <- c("orange", "darkblue", "skyblue")
+
+
+# Create a pie chart using plot_ly
+donut_chart <- plot_ly(labels = ~monticello_visitors$type_of_visitor, values = ~monticello_visitors$values, type = 'pie', hole = 0.3, marker = list(colors = visitor_colors)) %>%
+  layout(title = "Monticello Visitors",
+         showlegend = TRUE,
+         legend = list(orientation = 'h', x = 0.5, y = -0.3), plot_bgcolor = "lightgray")
+
+# Print the pie chart
+donut_chart
+
+
+
+```
